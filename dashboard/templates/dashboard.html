@@ -1,0 +1,104 @@
+{% load static %}
+
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href=" {% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+     <nav class="fixed top-10 left-0 right-0 mx-auto max-w-lg flex justify-between items-center bg-black text-white shadow rounded-xl px-6 py-3">
+            <a href="{% url 'profile' %}" class="font-bold transform transition hover:scale-110 hover:text-red-700">Profile</a>
+            <a href="{% url 'view_info' %}" class="font-bold transform transition hover:scale-110 hover:text-red-700">View</a>
+            <button onclick="toggleModal()" class="font-bold transform transition hover:scale-110 hover:text-red-700">Add Expense</button>
+            <a href="{% url 'logout' %}" class="font-bold transform transition hover:scale-110 hover:text-red-700">Logout</a>
+     </nav>
+     
+    <div class="mt-32 px-4">
+        <h1 class="text-3xl font-bold text-black mb-6">Welcome, {{name}}</h1>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 p-4 gap-4">
+        <div class="bg-gray-800 p-6 text-white rounded-xl shadow flex justify-center items-center">
+            <h2 class="text-xl text-gray-400">This Month</h2>
+            <p class="text-2xl font-bold">&nbsp;{{ total_month_expense |floatformat:4 }}$</p>
+        </div>
+        
+        
+        <div class="bg-gray-800 p-6 text-white rounded-xl shadow flex justify-center items-center">
+            <h2 class="text-xl text-gray-400">All time</h2>
+            <p class="text-2xl font-bold">&nbsp;{{total_all_time_expense |floatformat:4 }}$</p>
+        </div>
+        
+    </div>
+   
+    <!-- MODAL -->
+    <div id="expenseModal" class="fixed inset-0 bg-black bg-opacity-50 flex hidden items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-md relative">
+           <button onclick="toggleModal()" class="absolute top-2 right-3 text-gray-600 hover:text-red-600">&times;</button>
+           <h2 class="text-xl font-semibold mb-4 text-center">Add Expense</h2>
+
+        <form method="POST" action="{% url 'add_expense' %}">
+      {% csrf_token %}
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2">Title</label>
+        <input name="title" type="text" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2">Cost</label>
+        <input name="cost" type="number" step="0.01" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2">Category</label>
+        <select name="category" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+          <option value="">Select Category</option>
+          <option value="Food">Food</option>
+          <option value="Travel">Travel</option>
+          <option value="Books">Books</option>
+          <option value="Rent">Rent</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Add Expense</button>
+      </div>
+        </form>
+        </div>
+    </div>
+
+
+
+    <div class="bg-gray-900 text-white p-4 rounded-xl shadow m-4">
+        <h2 class="text-lg font-bold mb-2">Spending by Category</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {% for item in category_data %}
+            <div class="bg-gray-800 p-4 rounded shadow flex justify-between">
+                <span>{{ item.category }}</span>
+                <span>${{ item.total|floatformat:2 }}</span>
+            </div>
+            {% empty %}
+            <p class="text-gray-400">No expenses yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+
+  
+{% include "footer.html" %}
+
+</body>
+
+<script>
+  function toggleModal() {
+    const modal = document.getElementById('expenseModal');
+    modal.classList.toggle('hidden');
+  }
+</script>
+
+
+
+</html>

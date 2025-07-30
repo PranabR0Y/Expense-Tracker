@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Expenses</title>
+    <link href="{% static 'css/view_style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div>
+    <h1 class="flex justify-center text-2xl font-bold p-4">pranab, Here Are Your Expenses</h1>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 p-4 text-center">
+        {% for expense in expenses %}
+        <div class="bg-gray-800 text-white rounded-xl shadow-lg p-4">
+            <h3 class="text-xl font-bold mb-2">{{ expense.title }}</h3>
+            <p><span class="text-gray-400">Cost:</span> ${{ expense.cost }}</p>
+            <p><span class="text-gray-400">Category:</span> {{ expense.category }}</p>
+            <p><span class="text-gray-400">Date:</span> {{ expense.date|date:"Y-m-d H:i" }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+</body>
+</html>
