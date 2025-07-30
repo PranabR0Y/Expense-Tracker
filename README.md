@@ -14,15 +14,15 @@ A simple web-based expense tracker built with Django. Users can register, log in
 - Built-in session-based authentication
 
 ## File Structure
-project/
-│
-├── homepage/             # Handles user login/registration
-├── dashboard/            # Dashboard and expense logic
-├── project            
-├── db.sqlite3            # SQLite database               
-├── manage.py
-├── README.md
-└── .gitignore
+project/  
+│  
+├── homepage/             # Handles user login/registration  
+├── dashboard/            # Dashboard and expense logic  
+├── project/              # Your Django settings module  
+├── db.sqlite3            # SQLite database  
+├── manage.py  
+├── README.md  
+└── .gitignore  
 
 
 
