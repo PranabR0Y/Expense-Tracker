@@ -2,6 +2,9 @@
 
 A simple web-based expense tracker built with Django. Users can register, log in, add/view their expenses, and track monthly and all-time spending.
 
+⚠️This project does not include a database export or setup instructions, and cannot be run outside the original development environment. 
+The code is uploaded for academic or reference purposes only.
+
 ##  Features
 
 - User registration & login/logout
@@ -16,10 +19,10 @@ A simple web-based expense tracker built with Django. Users can register, log in
 ## File Structure
 project/  
 │  
-├── homepage/             # Handles user login/registration  
-├── dashboard/            # Dashboard and expense logic  
-├── project/              # Your Django settings module  
-├── db.sqlite3            # SQLite database  
+├── homepage/               # Handles user login/registration  
+├── dashboard/              # Dashboard and expense logic  
+├── project/                # Django settings module  
+├── db.sqlite3              # SQLite database  
 ├── manage.py  
 ├── README.md  
 └── .gitignore  
