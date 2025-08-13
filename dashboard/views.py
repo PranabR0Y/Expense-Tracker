@@ -52,6 +52,8 @@ def profile(request):
     return render(request, 'profile.html',data)
 
 
+
+
 def add_expense(request):
     if request.method == "POST":
         title = request.POST.get('title')

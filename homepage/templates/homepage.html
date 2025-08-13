@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@
 
     <nav class="fixed top-10 left-0 right-0 mx-auto max-w-lg flex justify-between items-center bg-black text-white shadow rounded-xl px-6 py-3">
             <a href="/dashboard" class="font-bold transform transition hover:scale-110 hover:text-red-700">Home</a>
-            <a href="#" class="font-bold transform transition hover:scale-110 hover:text-red-700">Services</a>
+            <a href="{% url 'services' %}" class="font-bold transform transition hover:scale-110 hover:text-red-700">Services</a>
             <a href="/signup" class="font-bold transform transition hover:scale-110 hover:text-red-700">Register</a>
             <a href="/login" class="font-bold transform transition hover:scale-110 hover:text-red-700">Login</a>
      </nav>
@@ -27,7 +28,9 @@
 
  
 
-{% include "footer.html" %}
    
+{% include "footer.html" %}
+
 
 </body>
+</html>

@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 
 SESSION_COOKIE_AGE = 1209600  # seconds = 2 weeks (default)
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Application definition
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from homepage.models import userinfo
+from homepage.models import userinfo,Services
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
@@ -14,7 +14,14 @@ def home(request):
         return redirect('/dashboard/')
     return render(request, 'homepage.html')
 
+def services(request):
+    service_data = Services.objects.all()
 
+    data = {
+        'services':service_data
+    }
+
+    return render(request,'services.html',data)
 def login(request):
 
     if request.method == 'POST':
